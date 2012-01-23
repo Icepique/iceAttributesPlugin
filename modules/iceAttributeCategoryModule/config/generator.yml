@@ -1,0 +1,28 @@
+generator:
+  class: IcePropelSecurityGenerator
+  param:
+    model_class:           iceModelAttributeCategory
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              iceModelAttributeCategory
+    plural:                attribute_categories
+    route_prefix:          ice_attribute_category
+    with_propel_route:     1
+    actions_base_class:    IceBackendActions
+
+    use_security_yaml_credentials: false
+
+    config:
+      actions: ~
+      fields:
+        id: { label: ID }
+      list:
+        title: Attribute Categories
+        display: [id, =name, position]
+      filter:
+        class: false
+      form:
+        display: [bg_BG, en_US, position]
+      edit:    ~
+      new:     ~

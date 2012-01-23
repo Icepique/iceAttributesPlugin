@@ -1,0 +1,26 @@
+ice_attribute:
+  class: sfPropelRouteCollection
+  options:
+    model:        iceModelAttribute
+    module:       iceAttributeModule
+    prefix_path:  /attribute
+    column:       id
+    with_wildcard_routes: true
+
+ice_attribute_category:
+  class: sfPropelRouteCollection
+  options:
+    model:        iceModelAttributeCategory
+    module:       iceAttributeCategoryModule
+    prefix_path:  /attribute-category
+    column:       id
+    with_wildcard_routes: true
+
+ice_attribute_measure_unit:
+  class: sfPropelRouteCollection
+  options:
+    model:        iceModelAttributeMeasureUnit
+    module:       iceAttributeMeasureUnitModule
+    prefix_path:  /attribute-measure-unit
+    column:       id
+    with_wildcard_routes: true

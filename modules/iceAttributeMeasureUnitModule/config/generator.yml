@@ -1,0 +1,27 @@
+generator:
+  class: IcePropelSecurityGenerator
+  param:
+    model_class:           iceModelAttributeMeasureUnit
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              iceModelAttributeMeasureUnit
+    plural:                attribute_measure_units
+    route_prefix:          ice_attribute_measure_unit
+    with_propel_route:     1
+    actions_base_class:    IceBackendActions
+
+    use_security_yaml_credentials: false
+
+    config:
+      actions: ~
+      fields: ~
+      list:
+        title: Attribute Measure Units
+        display: [id, =name, unit]
+      filter:
+        class: false
+      form:
+        display: [bg_BG, en_US]
+      edit:  ~
+      new:   ~

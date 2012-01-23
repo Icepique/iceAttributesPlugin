@@ -1,0 +1,122 @@
+connection:  propel
+noXsd:  false
+defaultIdMethod:  native
+package:  plugins.iceAttributesPlugin.lib.model
+encoding:  utf8
+
+classes:
+  Attribute:
+    phpName: iceModelAttribute
+    isI18n:  true
+    i18nTable:  attribute_i18n
+    columns:
+      id:  ~
+      measure_unit_id:  { type: integer, required: false, foreignClass: AttributeMeasureUnit, foreignReference: id, onDelete: setnull }
+      type:             { type: char, sqlType: "ENUM('string', 'text', 'numeric', 'date', 'boolean')", default: string, required: true }
+      is_special:       { type: boolean, sqlType: "BOOL", default: false }
+
+  AttributeI18n:
+    phpName: iceModelAttributeI18n
+    columns:
+      id:  ~
+      name:           { type: varchar, size: 128, required: true, primaryString: true }
+      name_abbr:      { type: varchar, size: 128, required: true }
+      name_translit:  { type: varchar, size: 255, required: true }
+      slug:           { type: varchar, size: 132, required: true }
+      description:    { type: longvarchar, required: false }
+
+    uniques:
+      attribute_i18n_U_1: [slug, culture]
+
+  AttributeCategory:
+    phpName: iceModelAttributeCategory
+    isI18n:  true
+    i18nTable:  attribute_category_i18n
+    columns:
+      id:  ~
+      position: { type: tinyint, default: 0 }
+
+  AttributeCategoryI18n:
+    phpName: iceModelAttributeCategoryI18n
+    columns:
+      id:  ~
+      name:           { type: varchar, size: 128, required: true, primaryString: true }
+      name_translit:  { type: longvarchar, required: true }
+      slug:           { type: varchar, size: 132, required: true }
+
+    uniques:
+      attribute_category_i18n_U_1: [slug, culture]
+
+  AttributeFilter:
+    phpName: iceModelAttributeFilter
+    columns:
+      id:  ~
+      attribute_id:  { type: integer, required: true, foreignClass: Attribute, foreignReference: id, onDelete: cascade }
+      pattern:       { type: varchar, size: 128, required: true }
+      replacement:   { type: varchar, size: 128, required: true }
+      limit:         { type: tinyint, default: -1 }
+      position:      { type: tinyint, default: 0 }
+
+  AttributeMeasureUnit:
+    phpName: iceModelAttributeMeasureUnit
+    isI18n:  true
+    i18nTable:  attribute_measure_unit_i18n
+    columns:
+      id:  ~
+
+  AttributeMeasureUnitI18n:
+    phpName: iceModelAttributeMeasureUnitI18n
+    columns:
+      id:  ~
+      unit:         { type: char, size: 25, required: true }
+      name:         { type: varchar, size: 128, required: true, primaryString: true }
+      slug:         { type: varchar, size: 132, required: true }
+      description:  { type: varchar, size: 255, required: false }
+
+    uniques:
+      attribute_measure_unit_i18n_U_1: [slug, culture]
+
+  AttributeValue:
+    phpName: iceModelAttributeValue
+    columns:
+      id:  ~
+
+      string:      { type: varchar, size: 255, required: false, default: null }
+      numeric:     { type: double, required: false, default: null }
+      boolean:     { type: boolean, sqlType: "BOOL", required: false, default: null  }
+      date:        { type: date, required: false, default: null  }
+
+    propel_behaviors:
+      timestampable: ~
+
+  AttributeString:
+    phpName: iceModelAttributeString
+    columns:
+      id:  ~
+      value: { type: varchar, size: 255, required: true }
+      updated_at:  ~
+      created_at:  ~
+
+  AttributeNumeric:
+    phpName: iceModelAttributeNumeric
+    columns:
+      id:  ~
+      value:       { type: double, required: true }
+      updated_at:  ~
+      created_at:  ~
+
+  AttributeBoolean:
+    phpName: iceModelAttributeBoolean
+    columns:
+      id:  ~
+      value:       { type: boolean, sqlType: "BOOL", required: true }
+      updated_at:  ~
+      created_at:  ~
+
+  AttributeDate:
+    phpName: iceModelAttributeDate
+    columns:
+      id:  ~
+      value:       { type: date, required: true }
+      updated_at:  ~
+      created_at:  ~
